@@ -57,9 +57,6 @@
 (require 'spaceline-config)
 (spaceline-all-the-icons-theme)
 
-(yas-global-mode t)
-(workgroups-mode 1)
-
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 (evil-mode t)
@@ -86,16 +83,8 @@
 (global-hl-line-mode)
 (global-font-lock-mode 1)
 (global-flycheck-mode)
-(beacon-mode 1)
 (dimmer-mode)
 (dumb-jump-mode)
-
-(defvar neo-smart-open)
-(defvar neo-theme)
-;; (defvar projectile-switch-project-action)
-(setq neo-smart-open t)
-;; (setq projectile-switch-project-action 'neotree-projectile-action)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
 ;; (evilnc-default-hotkeys)
 
@@ -121,7 +110,6 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-set-key (kbd "M-t") 'neotree-project-dir)
 (global-set-key (kbd "M-f") 'toggle-frame-fullscreen)
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
@@ -148,12 +136,6 @@
 (evil-define-key 'normal prog-mode-map (kbd "m n") 'bm-next)
 (evil-define-key 'normal prog-mode-map (kbd "m p") 'bm-previous)
 
-(defvar neotree-mode-map)
-(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
-(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (require 'evil-leader)
@@ -169,15 +151,14 @@
 (eval-after-load 'flycheck
   '(flycheck-credo-setup))
 (add-hook 'elixir-mode-hook 'flycheck-mode)
+
 ;;; Hooks:
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'prog-mode-hook #'idle-highlight-mode)
-;; (add-hook 'prog-mode-hook #'aggressive-indent-mode)
 (add-hook 'prog-mode-hook #'whitespace-cleanup-mode)
 (add-hook 'prog-mode-hook #'diff-hl-mode)
 (add-hook 'prog-mode-hook #'counsel-projectile-mode)
 (add-hook 'prog-mode-hook #'font-lock-comment-annotations)
-;; (add-hook 'prog-mode-hook #'focus-mode)
 (add-hook 'enh-ruby-mode-hook 'robe-mode)
 (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
 (add-hook 'enh-ruby-mode-hook 'rubocop-mode)
@@ -191,24 +172,10 @@
              '("\\(?:\\.rb\\|ru\\|rake\\|thor\\|jbuilder\\|gemspec\\|podspec\\|/\\(?:Gem\\|Rake\\|Cap\\|Thor\\|Vagrant\\|Guard\\|Pod\\)file\\)\\'" . enh-ruby-mode))
 
 ;;; Code:
-(defun neotree-project-dir ()
-  "Open NeoTree using the git root."
-  (interactive)
-  (let ((project-dir (projectile-project-root))
-        (file-name (buffer-file-name)))
-    (neotree-toggle)
-    (if project-dir
-        (if (neo-global--window-exists-p)
-            (progn
-              (neotree-dir project-dir)
-              (neotree-find file-name)))
-      (message "Could not find git project root."))))
-
 (defun find-user-init-file ()
   "Edit the `user-init-file', in another window."
   (interactive)
   (find-file-other-window user-init-file))
-
 
 (defun font-lock-comment-annotations ()
   "Highlight a bunch of well known comment annotations.
