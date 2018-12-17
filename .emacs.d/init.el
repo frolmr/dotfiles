@@ -53,6 +53,7 @@
 (setq flycheck-elixir-credo-strict t)
 
 ;;; Mode configs:
+
 (ac-config-default)
 
 (require 'smartparens-config)
@@ -66,11 +67,11 @@
 (evil-mode t)
 
 (defvar ido-enable-flex-matching)
-(defvar ido-everywhere)
 (defvar ido-use-faces)
 (ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
 (setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
 (setq ido-use-faces nil)
 
 (defvar projectile-completion-system)
@@ -80,7 +81,8 @@
 (ivy-mode)
 (setq projectile-completion-system 'ivy)
 (setq ivy-re-builders-alist
-      '((t . ivy--regex-fuzzy)))
+      '((counsel-ag . ivy--regex-plus)
+        (t . ivy--regex-fuzzy)))
 (setq ivy-initial-inputs-alist nil)
 
 (global-hl-line-mode)
@@ -212,7 +214,7 @@ This functions should be added to the hooks of major modes for programming."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dired-sidebar projectile use-package smex smartparens magit linum-relative idle-highlight-mode gruvbox-theme flycheck-cask flx-ido expand-region exec-path-from-shell evil auto-complete ace-jump-mode)))
+    (ag dired-sidebar projectile use-package smex smartparens magit linum-relative idle-highlight-mode gruvbox-theme flycheck-cask flx-ido expand-region exec-path-from-shell evil auto-complete ace-jump-mode)))
  '(zoom-mode t nil (zoom))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
