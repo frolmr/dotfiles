@@ -49,6 +49,7 @@
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 
+(defvar flycheck-elixir-credo-strict)
 (setq flycheck-elixir-credo-strict t)
 
 ;;; Mode configs:
@@ -70,7 +71,6 @@
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
-(flx-ido-mode 1)
 (setq ido-use-faces nil)
 
 (defvar projectile-completion-system)
