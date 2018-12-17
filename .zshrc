@@ -40,9 +40,6 @@ fi
 # export PATH=$PATH:$GOPATH/bin
 # export PATH="$HOME/.cask/bin:$PATH"
 export ERL_AFLAGS="-kernel shell_history enabled"
-alias frol_server="ssh -p 2002 frol@95.213.161.130"
-alias mini="ssh frol@192.168.88.11"
-alias psq="psql postgres frol"
 alias weather="curl wttr.in/moscow"
 alias v="nvim"
 alias git='LANG=en_US.UTF-8 git'
