@@ -20,6 +20,9 @@
 (scroll-bar-mode 0)
 (indent-guide-global-mode)
 
+(require 'pallet)
+(pallet-mode t)
+
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
