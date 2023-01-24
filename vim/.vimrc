@@ -19,10 +19,10 @@ set backspace=2
 
 set rtp+=/usr/local/opt/fzf
 
-" Important!!
-if has('termguicolors')
-  set termguicolors
-endif
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 set background=dark
 
 let g:mapleader=','
@@ -139,7 +139,6 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'easymotion/vim-easymotion'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Decor
 Plug 'morhetz/gruvbox'
