@@ -44,5 +44,4 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
 
-export BUNDLE_GITHUB__COM=x-access-token:
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
