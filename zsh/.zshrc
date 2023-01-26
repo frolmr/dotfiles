@@ -5,29 +5,31 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-fpath=($HOME/.completion_zsh $fpath)
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-HIST_STAMPS="dd/mm/yyyy"
-
-# Path to your oh-my-zsh installation.
-export ZSH="/home/frol/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
+plugins=(git tmux docker ripgrep rails lein gh dotenv ag direnv zsh-autosuggestions zsh-syntax-highlighting kubectl)
+source $ZSH/oh-my-zsh.sh
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git tmux docker direnv zsh-autosuggestions zsh-syntax-highlighting kubectl)
+fpath=($HOME/.completion_zsh $fpath)
 
-source $ZSH/oh-my-zsh.sh
+HIST_STAMPS="dd/mm/yyyy"
 
 if [ -e /usr/share/fzf/completion.zsh ]; then
   source /usr/share/fzf/key-bindings.zsh
   source /usr/share/fzf/completion.zsh
 fi
 
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source /opt/kube-ps1/kube-ps1.sh
-PROMPT='$(kube_ps1)'$PROMPT
+#source /opt/kube-ps1/kube-ps1.sh
+#PROMPT='$(kube_ps1)'$PROMPT
 
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
@@ -45,3 +47,4 @@ export GOPATH="$HOME/go"
 export PATH=$PATH:$GOPATH/bin
 
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library
